@@ -1,0 +1,8 @@
+extends layout.pug
+
+block content
+    section#content
+        form(action='/hello', method='post')
+            label Enter name here:
+                input(type='text', name='username')
+            button(type='submit') Submit!
