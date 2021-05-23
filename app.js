@@ -1,12 +1,14 @@
 const express = require('express');
 const app = express();
 
+app.set('view engine', 'pug');
+
 app.get('/', (req, res) => {
-    res.send('Gaggii geil so eifach');
+    res.render('index');
 });
 
-app.get('/hello', (req, res) => {
-    res.send('<h1>hello there, general kenobi!</h1>')
+app.get('/cards', (req, res) => {
+    res.render('card', {prompt: "Who is buried in Grants tomb?", hint: "Think about whos"});
 });
 
 app.listen(3000, () => {
