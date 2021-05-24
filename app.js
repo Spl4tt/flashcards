@@ -7,6 +7,7 @@ const app = express();
 // Needed for body-parser, to print the request.body object
 app.use(bodyParser.urlencoded({ extended: false}));
 app.use(cookieParser());
+app.use('/static', express.static('public'));
 
 app.set('view engine', 'pug');
 
