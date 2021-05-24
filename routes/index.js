@@ -31,7 +31,7 @@ router.get('/', (req, res) => {
 router.get('/hello', (req, res) => {
     const name = req.cookies.username
     if (name) {
-        res.redirect('/')
+        res.redirect('/');
     }
     else {
         res.render('hello');
