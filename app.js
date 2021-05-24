@@ -10,55 +10,11 @@ app.use(cookieParser());
 
 app.set('view engine', 'pug');
 
-app.use((req, res, next) => {
-    // req.message = 'This message made it, juhu';
-    console.log('Hello');
-    // const err = new Error('Error happened');
-    // err.status = 500;
-    next();
-});
+const mainRoutes = require('./routes');
+const cardRoutes = require('./routes/cards');
 
-app.use((req, res, next) => {
-    // console.log(req.message);
-    console.log('world');
-    next();
-});
-
-
-
-
-app.get('/', (req, res) => {
-    const name = req.cookies.username
-    if(name) {
-        res.render('index', {name});
-    }
-    else {
-        res.redirect('/hello');
-    }
-});
-
-app.get('/cards', (req, res) => {
-    res.render('card', {prompt: "Who is buried in Grants tomb?"});
-});
-
-app.get('/hello', (req, res) => {
-    const name = req.cookies.username
-    if (name) {
-        res.redirect('/')
-    }
-    else {
-        res.render('hello');
-    }
-});
-app.post('/hello', (req, res) => {
-    res.cookie('username', req.body.username);
-    res.redirect('/');
-});
-
-app.post('/goodbye', (req, res) => {
-    res.clearCookie('username');
-    res.redirect('/hello');
-});
+app.use(mainRoutes);
+app.use('/cards', cardRoutes);
 
 app.use((req, res, next) => {
     const err = new Error('Net gfunde, sry');
