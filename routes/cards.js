@@ -17,7 +17,8 @@ router.get('/:id', (req, res) => {
 
     // If direct access to card page: add query string to question side
     if(!side || (side !== 'question' && side !== 'answer')) {
-        res.redirect(`${id}?side=question`);
+        return res.redirect(`${id}?side=question`);
+
     }
 
     const name = req.cookies.username;
